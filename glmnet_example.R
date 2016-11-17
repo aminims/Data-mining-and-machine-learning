@@ -29,17 +29,17 @@ for (i in 0:10) {
 }
 
 # MSE on test set
-testDataPred0 <- predict(fit0, s=fit0$lambda.min, newx=testData[,-1])
-testDataPred1 <- predict(fit1, s=fit1$lambda.min, newx=testData[,-1])
-testDataPred2 <- predict(fit2, s=fit2$lambda.min, newx=testData[,-1])
-testDataPred3 <- predict(fit3, s=fit3$lambda.min, newx=testData[,-1])
-testDataPred4 <- predict(fit4, s=fit4$lambda.min, newx=testData[,-1])
-testDataPred5 <- predict(fit5, s=fit5$lambda.min, newx=testData[,-1])
-testDataPred6 <- predict(fit6, s=fit6$lambda.min, newx=testData[,-1])
-testDataPred7 <- predict(fit7, s=fit7$lambda.min, newx=testData[,-1])
-testDataPred8 <- predict(fit8, s=fit8$lambda.min, newx=testData[,-1])
-testDataPred9 <- predict(fit9, s=fit9$lambda.min, newx=testData[,-1])
-testDataPred10 <- predict(fit10, s=fit10$lambda.min, newx=testData[,-1])
+testDataPred0 <- predict(fit0, s=fit0$lambda.1se, newx=testData[,-1])
+testDataPred1 <- predict(fit1, s=fit1$lambda.1se, newx=testData[,-1])
+testDataPred2 <- predict(fit2, s=fit2$lambda.1se, newx=testData[,-1])
+testDataPred3 <- predict(fit3, s=fit3$lambda.1se, newx=testData[,-1])
+testDataPred4 <- predict(fit4, s=fit4$lambda.1se, newx=testData[,-1])
+testDataPred5 <- predict(fit5, s=fit5$lambda.1se, newx=testData[,-1])
+testDataPred6 <- predict(fit6, s=fit6$lambda.1se, newx=testData[,-1])
+testDataPred7 <- predict(fit7, s=fit7$lambda.1se, newx=testData[,-1])
+testDataPred8 <- predict(fit8, s=fit8$lambda.1se, newx=testData[,-1])
+testDataPred9 <- predict(fit9, s=fit9$lambda.1se, newx=testData[,-1])
+testDataPred10 <- predict(fit10, s=fit10$lambda.1se, newx=testData[,-1])
 
 
 mse0 <- mean((testData[,1] - testDataPred0)^2)
