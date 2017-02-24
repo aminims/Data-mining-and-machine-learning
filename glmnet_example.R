@@ -4,7 +4,7 @@
 
 # Reference
 
-# http://www4.stat.ncsu.edu/~post/josh/LASSO_Ridge_Elastic_Net_-_Examples.html. http://www4.stat.ncsu.edu/. Accessed 29 October 2016. 
+# http://www4.stat.ncsu.edu/~post/josh/LASSO_Ridge_Elastic_Net_-_Examples.html. Accessed 29 October 2016. 
 
 library(glmnet)  # Package to fit ridge/lasso/elastic net models
 
