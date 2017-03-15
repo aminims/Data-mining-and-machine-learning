@@ -58,5 +58,8 @@ mse10 <- mean((testData[,1] - testDataPred10)^2)
 
 # Table containing alpha and MSE
 sel_alpha=which.min(c(mse0,mse1,mse2,mse3,mse4,mse5,mse6,mse7,mse8,mse9))-1
+par(mfrow=c(1,2))
+plot(sel_model,xvar="lambda")
+plot(eval(parse(text=paste("fit",sel_alpha,sep=""))))
 sel_lambda=eval(parse(text=paste("fit",sel_alpha,"$lambda.1se",sep="")))
-fit_best_model=glmnet(indep_var,dep_var,alpha=sel_alpha/10,lambda=sel_lambda,family="gaussian")
+fit_best_model=glmnet(features,target,alpha=sel_alpha/10,lambda=sel_lambda,family="gaussian")
