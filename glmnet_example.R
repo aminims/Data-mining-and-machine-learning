@@ -16,7 +16,7 @@ nrow=dim(inputData)[1]
 
 # Split data into train and test sets
 perTrainData=0.7*nrow
-randomRow=sample(seq(1,n),perTrainData)
+randomRow=sample(seq(1,nrow),perTrainData)
 trainData=as.matrix(inputData[randomRow,])
 testData=as.matrix(inputData[-randomRow,])
 
@@ -57,9 +57,16 @@ mse9 <- mean((testData[,1] - testDataPred9)^2)
 mse10 <- mean((testData[,1] - testDataPred10)^2)
 
 # Table containing alpha and MSE
-sel_alpha=which.min(c(mse0,mse1,mse2,mse3,mse4,mse5,mse6,mse7,mse8,mse9))-1
+sel_alpha=which.min(c(mse0,mse1,mse2,mse3,mse4,mse5,mse6,mse7,mse8,mse9,mse10))-1
 par(mfrow=c(1,2))
 plot(sel_model,xvar="lambda")
 plot(eval(parse(text=paste("fit",sel_alpha,sep=""))))
 sel_lambda=eval(parse(text=paste("fit",sel_alpha,"$lambda.1se",sep="")))
-fit_best_model=glmnet(features,target,alpha=sel_alpha/10,lambda=sel_lambda,family="gaussian")
+glmnet_best_model=glmnet(features,target,alpha=sel_alpha/10,lambda=sel_lambda,family="gaussian")
+testDataPred_glmnet = predict(glmnet_best_model, s=sel_lambda,newx=testData[,-1])
+mse_glmnet <- mean((testData[,1] - testDataPred_glmnet)^2)
+
+glmulti_res = glmulti(rating~.,data=data.frame(trainData),method="g",level=1)
+glmulti_best_model=glm(rating ~ calories + protein + fat + sodium + fiber + carbo + sugars + potass + vitamins,data=data.frame(trainData))
+testDataPred_glmulti <- predict(glmulti_best_model, newdata=data.frame(testData[,-1]))
+mse_glmulti <- mean((testData[,1] - testDataPred_glmulti)^2)
