@@ -70,3 +70,9 @@ glmulti_res = glmulti(rating~.,data=data.frame(trainData),method="g",level=1)
 glmulti_best_model=glm(rating ~ calories + protein + fat + sodium + fiber + carbo + sugars + potass + vitamins,data=data.frame(trainData))
 testDataPred_glmulti <- predict(glmulti_best_model, newdata=data.frame(testData[,-1]))
 mse_glmulti <- mean((testData[,1] - testDataPred_glmulti)^2)
+
+pcr_model = pcr(rating~.,data=data.frame(trainData),scale=T,validation="CV")
+pcr_pred = predict(pcr_model, testData[-1], ncomp = 3)
+mse_pcr = mean((testData[,1] - pcr_pred)^2) 
+
+
