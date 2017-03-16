@@ -72,7 +72,10 @@ testDataPred_glmulti <- predict(glmulti_best_model, newdata=data.frame(testData[
 mse_glmulti <- mean((testData[,1] - testDataPred_glmulti)^2)
 
 pcr_model = pcr(rating~.,data=data.frame(trainData),scale=T,validation="CV")
-pcr_pred = predict(pcr_model, testData[-1], ncomp = 3)
+pcr_pred = predict(pcr_model, testData[,-1], ncomp = 3)
 mse_pcr = mean((testData[,1] - pcr_pred)^2) 
 
+plsr_model = plsr(rating~.,data=data.frame(trainData),scale=T,validation="CV")
+pcr_pred = predict(plsr_model, testData[,-1], ncomp = 3)
+mse_pcr = mean((testData[,1] - pcr_pred)^2) 
 
