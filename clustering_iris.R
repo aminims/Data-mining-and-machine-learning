@@ -3,6 +3,7 @@
 
 library(mclust) # Package for mobel-based clustering
 library(NMF) # Package for nmf
+library(cluster)
 
 #Preprocessing the iris dataset.
 data(iris)
